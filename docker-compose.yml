@@ -1,14 +1,14 @@
 services:
-  detaypeyzaj:
+  gumuslergroup:
     build:
       context: .
-    container_name: detaypeyzaj
+    container_name: gumuslergroup
     depends_on:
-      - detaypeyzajdatabase
+      - gumuslergroupdatabase
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://detaypeyzajdatabase:5432/detaypeyzaj
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://gumuslergroupdatabase:5432/gumuslergroup
     ports:
       - "8086:8086"
     volumes:
@@ -16,18 +16,18 @@ services:
     networks:
       - mynetwork
 
-  detaypeyzajdatabase:
+  gumuslergroupdatabase:
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s
       timeout: 5s
       retries: 5
     image: postgres
-    container_name: detaypeyzajdatabase
+    container_name: gumuslergroupdatabase
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=detaypeyzaj
+      - POSTGRES_DB=gumuslergroup
     ports:
       - "5432:5432"
     volumes:
